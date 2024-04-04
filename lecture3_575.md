@@ -72,6 +72,7 @@ $$P(O,Q) = P(O|Q)\times P(Q) = \prod\limits_{i=1}^T P(o_i|q_i) \times \prod\limi
 
 This is computationally inefficient. $O(2Tn^T)$
 
+- Need to find every possible state sequence $n^T$, then consider each emission given the state sequence $T$
 - $n$ is the number of hidden states
 - $T$ is the length of the sequence
 
@@ -94,4 +95,14 @@ To solve this, we use dynamic programming (Forward Procedure)
      - $P(O|\theta) = \sum\limits_{i=1}^n \alpha_T(i)$
 - It is computed left to right and top to bottom
 - Time complexity: $O(2n^2T)$
+  - At each time step, need to compare states to all other states $n^2$
   - Better compared to the naive approach $O(2Tn^T)$
+
+### Supervised Learning in HMM
+
+- Training data: Set of observations $O$ and set of state sequences $Q$
+- Find parameters $\theta = (\pi, T, B)$
+
+- Popular libraries in Python:
+  - `hmmlearn`
+  - `pomegranate`
