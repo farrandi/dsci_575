@@ -89,13 +89,15 @@ $$\pi T = \pi$$
 
 - Markov model for NLP
 - `n` in n-gram means $n-1$ previous words are considered
-  - e.g. `n=2` (bigram) means consider 1 previous word
-  - DIFFERENT from Markov model definition bigram= markov model with `n=1`
+  - e.g. `n=2` (bigram) means consider current word for the future
+  - DIFFERENT from Markov model definition bigram= markov model with `n=1` (we normally use this definition in NLP)
 - We extend the definition of a "state" to be a sequence of words
   - e.g. "I have read this book" -> bigram states: "I have", "have read", "read this", "this book"
 - example: "I have read this book"
-  - bigram: $P(\text{this book} | \text{read this})$
-  - trigram: $P(\text{read this book} | \text{have read this})$
+  - trigram (n=2): $P(\text{book} | \text{read this})$
+  - n=3: $P(\text{book} | \text{have read this})$
+
+_Note: n we use above is not the same as n in n-gram_
 
 #### Evaluating Language Models
 
@@ -123,6 +125,9 @@ So...
 $$
 \text{Perplexity}(W) = \sqrt[N]{\prod_{i=1}^{N} \frac{1}{P(w_i|w_{i-1})}}
 $$
+
+- Increase `n` will decrease perplexity => better model
+- Too high still bad because of overfitting
 
 ## Applications of Markov Models
 
@@ -161,6 +166,17 @@ $$
 - In NLP we talk about:
   - **Type**: Unique words (element in vocabulary)
   - **Token**: Instances of words
+
+### word-based vs character-based language models
+
+| Feature       | Word-Based                                                                           | Character-Based                                                                              |
+| ------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| Advantages    | - Faster training and inference due to smaller vocabulary size                       | - Can handle unseen words (out-of-vocabulary) and typos by generating characters             |
+|               | - Leverages existing knowledge of grammar and syntax through word relationships      | - More flexible for generating creative text formats like code or names                      |
+| Disadvantages | - Requires a large vocabulary, leading to higher memory usage and computational cost | - May struggle with complex morphology (word structure) in some languages                    |
+|               | - Can struggle with unseen words or typos (resulting in "unknown word" tokens)       | - May generate grammatically incorrect or nonsensical text due to lack of word-level context |
+
+- n-gram typically have larger state space for word-based models than character-based models
 
 ### Other Preprocessing Steps
 

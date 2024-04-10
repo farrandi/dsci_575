@@ -38,6 +38,8 @@ $$\text{Observation Sequence}: O = o_1, o_2, ..., o_T \in Y$$
 
 #### HMM Assumptions
 
+<img src="images/3_hmm.png" width="350">
+
 1. The probability of a particular state depends only on the previous state
 
 $$P(q_i|q_0,q_1,\dots,q_{i-1})=P(q_i|q_{i-1})$$
@@ -50,6 +52,7 @@ $$P(o_i|q_0,q_1,\dots,q_{i-1},o_0,o_1,\dots,o_{i-1})=P(o_i|q_i)$$
 
 - Observations are ONLY dependent on the current state
 - States are dependent on the previous state (not observations)
+- Each hidden state has a probability distribution over all observations
 
 #### Fundamental Questions for a HMM
 
@@ -126,6 +129,8 @@ To solve this, we use dynamic programming (Forward Procedure)
   - Store $\delta$ and $\psi$ at each node in the trellis
     - $\delta_i(t)$ is the max probability of the most likely path ending in trellis node at state $i$ at time $t$
     - $\psi_i(t)$ is the best possible previous state at time $t-1$ that leads to state $i$ at time $t$
+
+<img src="images/4_viterbi.png" width="400">
 
 #### Viterbi: Initialization
 
