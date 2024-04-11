@@ -174,3 +174,23 @@ To solve this, we use dynamic programming (Forward Procedure)
    - $\beta_i(t) = \sum_{j=1}^N a_{ij}b_{j}(o_{t+1}) \beta_j(t+1)$
 3. **Conclusion**: sum over the first column
    - $P(O|\theta) = \sum_{i=1}^N \pi_i b_i(o_1) \beta_i(1)$
+
+### Baum-Welch (BW) Algorithm
+
+- Given observation sequence $O$, no state sequence $S$, how do we choose the "best" parameters $\theta = (\pi, T, B)$?
+- Want $\theta$ that maximizes $P(O|\theta)$
+- Cannot use MLE because we do not have the state sequence
+- Use an **unsupervised learning** algorithm called Baum-Welch (Expectation-Maximization)
+
+#### High-level Idea
+
+- Initialize $\theta = (\pi, T, B)$ (guess) then iteratively update them
+- Combines the forward (get $alpha$) and backward (get $beta$) procedures
+- $\alpha$ and $\beta$ are combined to represent the probability of an entire observation sequence
+- Define $\gamma$ and $\xi$ to update the parameters
+  - $\gamma_i(t)$: probability of being in state $i$ at time $t$ given entire observation sequence $O$
+  - $\xi_{ij}(t)$: probability of transitioning from state $i$ to state $j$ at time $t$ to $t+1$ given entire observation sequence $O$ regarless of previous and future states
+- These probabilities are used to compute the expected:
+  - Number of times in state $i$
+  - Number of transitions from state $i$ to state $j$
+- Repeat until convergence
