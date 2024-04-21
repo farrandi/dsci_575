@@ -164,3 +164,14 @@ Possible RNN architectures:
 - Use case is in POS tagging it is useful to know words both before and after the current word
 - Bidirectional RNNs have two hidden layers, one for forward and one for backward
   - Combines two independent RNNs
+
+### Problems with RNNs
+
+3 Main problems:
+
+1. **Hard to remember relevant information**
+   - Vanishing gradients because of long sequences
+   - Case example: `The students in the exam where the fire alarm is ringing (are) really stressed.`
+     - Need to retain information that students are plural so use "are"
+2. **Hard to optimize**
+3. **Hard to parallelize**
