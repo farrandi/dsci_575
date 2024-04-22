@@ -150,3 +150,4 @@ $$
 - Take output of $h_N$ and get logit vector of shape $1 \times V$ where $V$ is the vocabulary size
   - $h_N$ -> unembedding layer -> logit vector -> softmax -> probability distribution
 - This probability distribution is used to predict the next word
+- This is a specific example of a **decoder** in a transformer
